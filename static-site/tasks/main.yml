@@ -1,0 +1,15 @@
+---
+# tasks file for static-site
+  - name: check if the docker is present
+    yum: name=docker state=latest
+
+  - name: start docker
+    service: name=docker state=running
+
+  - name: pull the docker image
+    command: docker pull dockersamples/static-site
+    
+  - name: run the docker image
+    command: docker run -d -p 8080:80 -t dockersamples/static-site
+ 
+
